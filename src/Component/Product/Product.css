@@ -1,0 +1,33 @@
+.product-card {
+    padding: 0;
+}
+.product-card .card-body{
+    padding: 0;
+    position: relative;
+}
+/* ellipse clip */
+.product-name {
+    margin: 0;
+}
+.card-title {
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+    font-weight: 600;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    border-bottom: 1px solid #ebebeb;
+}
+.product-card .card-footer .details{
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
+}
+.actions {
+    position: absolute;
+    top:0;
+}
+.card-price {
+    font-size: 14px;
+}

@@ -1,0 +1,24 @@
+.products-container {
+    flex: 1;
+    gap: 12px;
+    justify-content: center;
+    height: calc(100vh - var(--header-height) + 24);
+    overflow: auto;
+}
+.product-size {
+    max-width: 30%;
+}
+@media only screen and (max-width: 800px){
+    .product-size {
+        max-width: 48%;
+    }
+}
+@media only screen and (max-width: 600px){
+    .product-size {
+        max-width: 100%;
+    }
+    .products-container {
+        padding: 12px 24px;
+    }
+}
+

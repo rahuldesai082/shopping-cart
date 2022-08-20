@@ -1,0 +1,30 @@
+.placeHolder{
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+}
+.cart-action {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.Counter-input {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+.minus, .remove {
+    color: #ff0000;
+}
+.add {
+    color: #198754;
+}
+.remove, .minus, .add {
+    cursor: pointer;
+    font-size: 14px;
+}

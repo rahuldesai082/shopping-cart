@@ -1,0 +1,11 @@
+.rating {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    padding: 4px;
+    border-radius: 4px;
+    background: #ffffff7a;
+    display: flex;
+    gap: 2px;
+    font-size: 12px;
+}

@@ -1,38 +1,90 @@
-.App {
-  text-align: center;
+:root {
+  --header-height: 80px;
+  --grey50 :#F3F3F7;
+  --grey100:#DFE1E8;
+  --grey200:#D8DAE0;
+  --grey300:#BFC1C7;
+  --grey400:#ABADB3;
+  --grey500:#9D9EA3;
+  --grey600:#898A8F;
+  --grey700:#5C5C5E;
+  --grey800:#2C2C2E;
+  --grey900:#0C0C0D;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: var(--grey200);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.brandLogo {
   display: flex;
-  flex-direction: column;
+  font-weight: 600;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 8px;
+  font-size: 36px;
+  padding: 0;
+}
+.header{
+  min-height: var(--header-height);
 }
 
-.App-link {
-  color: #61dafb;
+#responsive-navbar-nav {
+  justify-content: flex-end;
+  gap: 8px;
+}
+.home-container {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: calc(100vh - var(--header-height));
+}
+.p-0 {
+  padding: 0;
+}
+.m-0 {
+  margin: 0;
+}
+*::-webkit-scrollbar {
+  width: 0;               /* width of the entire scrollbar */
+}
+*::-webkit-scrollbar-track {
+  background: transparent;        /* color of the tracking area */
+}
+*::-webkit-scrollbar-thumb {
+  background-color: transparent;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid transparent;  /* creates padding around scroll thumb */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.text-danger {
+  color: #ff0000;
+}
+
+@media only screen and (max-width: 800px){
+  .home-container {
+    padding: 12px 0;
   }
-  to {
-    transform: rotate(360deg);
+}
+@media only screen and (max-width: 600px){
+  .navbar-collapse.show {
+    display: flex;
+    width: 100%;
+  }
+  .search-container {
+    padding: 12px 0;
+    flex: 1;
+  }
+  .cart-dropdown button,.search-form {
+    height: 48px;
+  }
+  .search-form .search-input {
+    height: 100%;
+    margin: 0;
+  }
+  .home-container {
+    padding: 0;
   }
 }
