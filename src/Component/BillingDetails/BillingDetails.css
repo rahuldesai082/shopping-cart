@@ -1,0 +1,25 @@
+.billing--body {
+    height: calc(100% - 41px);
+}
+.Billing--container {
+    flex: 1;
+}
+.billing--title button{
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.billing--title {
+    padding: 8px 16px;
+    background: white;
+    border-radius: 4px!important;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.billing--address_list {
+    margin: 0;
+    gap: 8px;
+}

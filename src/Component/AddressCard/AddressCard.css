@@ -1,0 +1,10 @@
+.address-card {
+    max-width: calc(calc(100% - 16px) / 3 );
+    width: calc(calc(100% - 16px) / 3 );
+    padding: 0;
+}
+.address--radio-button {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}

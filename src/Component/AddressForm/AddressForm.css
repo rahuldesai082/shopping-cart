@@ -1,0 +1,24 @@
+.Address--form {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.Address--action {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    max-height: 36px;
+}
+.Address--action button{
+    width: 100px;
+}
+
+@media only screen and (max-width: 600px) {
+    .Address--action {
+        gap: 8px;
+    }
+    .Address--action button{
+        width: 50%;
+    }
+}

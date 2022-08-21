@@ -1,9 +1,18 @@
-.home-container__cart {
+.home-container {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    overflow: hidden;
+    box-sizing: border-box;
+    height: calc(100vh - var(--header-height));
+}
+
+.home-container--cart {
     width: 30%;
 }
 
 @media only screen and (max-width: 600px){
-    .home-container__cart {
+    .home-container--cart {
         display: none;
     }
 }

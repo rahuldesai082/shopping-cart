@@ -2,14 +2,15 @@ import React, { FunctionComponent } from 'react';
 import { Navbar, Container, Nav, Form, Dropdown, Badge } from 'react-bootstrap';
 import { BsFillCartFill } from 'react-icons/bs';
 import { FaShoppingBag } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { CartState } from '../../Context/Context';
-import { CHECKOUT } from '../../routes';
+import { CHECKOUT, HOME } from '../../routes';
  
 const Header: FunctionComponent = () => {
     const {state, dispatch} = CartState();
     return <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className='header'>
     <Container>
-      <Navbar.Brand className='brandLogo' href="/"><FaShoppingBag fontSize='32'/>ShopAway</Navbar.Brand>
+      <Navbar.Brand><Link className='brandLogo' to={HOME}><FaShoppingBag fontSize='32'/>ShopAway</Link></Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto search-container">
@@ -31,7 +32,7 @@ const Header: FunctionComponent = () => {
                 <Dropdown.Menu>
                     {
                         state?.cart?.length ? <>
-                            <Dropdown.Item href={CHECKOUT}>Check out</Dropdown.Item>
+                            <Dropdown.Item><Link to={CHECKOUT}>Check out</Link></Dropdown.Item>
                             <Dropdown.Item onClick={()=>dispatch && dispatch({type:'CLEAR_CART', payload:[]})} >Clear cart</Dropdown.Item>
                         </> : <Dropdown.Item className="text-danger">
                             Cart is empty!

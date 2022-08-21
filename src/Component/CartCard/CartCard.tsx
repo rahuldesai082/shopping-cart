@@ -1,17 +1,20 @@
 import React, { FunctionComponent } from 'react';
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import { Card, Button, Col } from 'react-bootstrap';
 import { TbFaceId, TbFaceIdError } from 'react-icons/tb';
+import { Link } from 'react-router-dom';
 import { CartState } from '../../Context/Context';
+import { CHECKOUT } from '../../routes';
 import { product } from '../../Utils/Interface/ContextInterface';
 import Counter from '../Counter/Counter';
 
 import './CartCard.css';
 interface CartCardProps {
     customClass?: string;
+    actionType: 'checkout' | 'payment';
 }
  
 const CartCard: FunctionComponent<CartCardProps> = (props) => {
-    const { customClass } = props;
+    const { customClass, actionType } = props;
     const {state, dispatch} = CartState();
     const getTitle = () => {
         return <div className='w-100'>
@@ -41,7 +44,10 @@ const CartCard: FunctionComponent<CartCardProps> = (props) => {
                     state?.cart && state.cart.map(
                         (product:product ,index:number)=><>
                             <Col className='cart--product' key={index}>
-                                <span className='cart--product_name'>{product.name}</span>
+                                <span className='cart--product_image_name'>
+                                    <img className='cart--product_image' src ={product.image} alt={product.name} />
+                                    <span className='cart--product_name'>{product.name}</span>
+                                </span>
                                 <span className='cart--product_price_quantity'>${product.price} <small>X</small> {product.quantity}</span>
                             </Col>
                             <Col className='cart--product_total'>
@@ -55,12 +61,13 @@ const CartCard: FunctionComponent<CartCardProps> = (props) => {
             </div>
             {
                 !!state?.cart?.length && <div className='w-100'>
-                    <Col className='cart--total'>
+                    <Col className='cart--grand_total'>
                         <strong>Total</strong>
                         <strong>${getTotal()}</strong>
                     </Col>
                     <hr/>
-                    <Button className='w-100' variant="primary">Check out</Button>
+                    { actionType === 'checkout' ? <Link to={CHECKOUT}><Button className='w-100' variant="primary">Check out</Button></Link>
+                        : <Link to='#'><Button className='w-100 btn-success' variant="primary">Proceed to Payment</Button></Link>}
                 </div>
             }
         </Card.Body>
