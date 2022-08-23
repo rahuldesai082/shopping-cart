@@ -1,0 +1,137 @@
+import React, { FunctionComponent, useEffect } from 'react';
+import { Form, FormGroup, InputGroup } from 'react-bootstrap';
+import Accordion from 'react-bootstrap/esm/Accordion';
+import Col from 'react-bootstrap/esm/Col';
+import { CartState } from '../../Context/Context';
+import Rating from '../Rating/Rating';
+
+import './Filters.css';
+
+interface FiltersProps {
+    maxPrice:number
+}
+ 
+const Filters: FunctionComponent<FiltersProps> = ({maxPrice}) => {
+    const { productState, productDispatch } = CartState();
+    const [ FilterCount, setFilterCount ] = React.useState(0);
+    
+    useEffect(() => {
+        let count = 0;
+        productState && Object.keys(productState).forEach((key:any) => {
+            if (productState[key] && key !== 'searchQuery') {
+                count++;
+            }
+        } );
+        setFilterCount(count);
+    }, [productState]);
+    return <Col md={12} className='filter-container'>
+        <Accordion >
+            <Accordion.Item eventKey="0">
+                <Accordion.Header>Filters({FilterCount})</Accordion.Header>
+                <Accordion.Body className='filter-list'>
+                    <InputGroup className='range-container'>
+                        <InputGroup.Text className='range-label'>$0</InputGroup.Text>
+                        <InputGroup.Text className='range-input'>
+                            <Form.Range
+                                min={0}
+                                max={maxPrice}
+                                value={productState?.byPrice}
+                                onChange={(e) => productDispatch && productDispatch({
+                                    type: "FILTER_BY_PRICE",
+                                    payload: e.currentTarget.value,
+                                })}
+                                />
+                        </InputGroup.Text>
+                        <InputGroup.Text className='range-label'>${maxPrice.toString().split('.')[0]}</InputGroup.Text>
+                        <InputGroup.Text className='range-label range-value text-success rang'><b>${productState?.byPrice}</b></InputGroup.Text>
+                    </InputGroup>
+                    <Form.Check
+                        className='filter-checkbox'
+                        inline
+                        label="Out of stock"
+                        name="outOfStock"
+                        type="checkbox"
+                        id={`outOfStock`}
+                        onChange={() =>
+                            productDispatch && productDispatch({
+                                type: "FILTER_BY_STOCK",
+                                payload: '',
+                            })
+                        }
+                        checked={productState?.byStock}
+                    />
+                    <Form.Check
+                        inline
+                        className='filter-checkbox'
+                        label="Fast delivery"
+                        name="fastDelivery"
+                        type="checkbox"
+                        id={`fastDelivery`}
+                        onChange={() =>
+                            productDispatch && productDispatch({
+                                type: "FILTER_BY_DELIVERY",
+                                payload: '',
+                            })
+                        }
+                        checked={productState?.byFastDelivery}
+                    />
+                    <div className='sortOrder'>
+                        <FormGroup>
+                            <Form.Check
+                                inline
+                                label="Ascending"
+                                name="sortOrder"
+                                type="radio"
+                                id={`sortOrderAscending`}
+                                onChange={() =>
+                                    productDispatch && productDispatch({
+                                    type: "SORT_BY_PRICE",
+                                    payload: "lowToHigh",
+                                    })
+                                }
+                                checked={productState?.sort === "lowToHigh" ? true : false}
+                            />
+                            <Form.Check
+                                inline
+                                label="Descending"
+                                name="sortOrder"
+                                type="radio"
+                                id={`sortOrderDescending`}
+                                onChange={() =>
+                                    productDispatch && productDispatch({
+                                    type: "SORT_BY_PRICE",
+                                    payload: "highToLow",
+                                    })
+                                }
+                                checked={productState?.sort === "highToLow" ? true : false}
+                            />
+                        </FormGroup>
+                    </div>
+                    <div className='rating-filter'>
+                        <span>Rating: </span>
+                        <Rating
+                            rating={productState?.byRating||0}
+                            onClick={(rating:number) => {
+                                productDispatch && productDispatch({
+                                    type: "FILTER_BY_RATING",
+                                    payload: rating,
+                                })
+                            }}
+                        />
+                    </div>
+                    {
+                        !!FilterCount && <div
+                            className='clear-filter'
+                            onClick={() => {
+                                productDispatch && productDispatch({type:"CLEAR_FILTERS", payload:''})
+                            }}>
+                            Clear filter
+                        </div>
+                    }
+                </Accordion.Body>
+            </Accordion.Item>
+      </Accordion>
+    </Col>;
+}
+ 
+export default Filters;

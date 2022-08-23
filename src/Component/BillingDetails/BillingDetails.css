@@ -23,3 +23,22 @@
     margin: 0;
     gap: 8px;
 }
+@media only screen and (max-width: 600px) {
+    .billing--address_list {
+        flex-wrap: nowrap;
+        overflow: auto;
+        max-width: 100%;
+    }
+    .billing-address-slider {
+        padding: 0;
+    }
+    .billing-address-slider .carousel-indicators {
+        margin-bottom: 0;
+    }
+    .billing-address-slider .carousel-indicators [data-bs-target] {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #198754;
+    }
+}

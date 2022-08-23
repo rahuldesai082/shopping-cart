@@ -7,10 +7,6 @@
     height: calc(100vh - var(--header-height));
 }
 
-.checkout-container {
-    display: flex;
-}
-
 .checkout-container--billing-detail {
     flex: 1;
 }
@@ -21,6 +17,15 @@
 
 @media only screen and (max-width: 600px) {
     .checkout-container--cart {
-        display: none;
+        width: 100%;
+    }
+    .checkout-container--billing-detail {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    .checkout-container {
+        height: calc(100vh - var(--header-height) - 72px);
+        display: block;
+        overflow: auto;
     }
 }

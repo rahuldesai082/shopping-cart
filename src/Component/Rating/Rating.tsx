@@ -1,16 +1,30 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 
 import './Rating.css';
 
 interface RatingProps {
     rating:number;
+    onClick?:(rating:number)=>void;
 }
  
-const Rating: FunctionComponent<RatingProps> = ({rating}) => {
+const Rating: FunctionComponent<RatingProps> = ({rating, onClick}) => {
+    const [ratingValue, setRatingValue] = React.useState(rating);
+    useEffect(() => {
+        setRatingValue(rating);
+    } , [rating]);
+    const ratingHandle = (rating:number) => {
+        onClick && onClick(rating);
+    }
     return <div className='rating'>
         {
-            Array(5).fill(0).map((_, index) => <FaStar color={index<rating ? 'gold' : 'grey'} key={index} className='rating-star'/>)
+            Array(5).fill(0).map((_, index) => <FaStar
+                color={index < ratingValue ? 'gold' : 'grey'}
+                key={index} className='rating-star'
+                onClick={() => ratingHandle(index+1)}
+                onMouseEnter={(e) => onClick && index >= rating && setRatingValue(index+1)}
+                onMouseLeave={() => onClick && setRatingValue(rating)}
+            />)
         }
     </div>;
 }

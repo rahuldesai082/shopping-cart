@@ -1,27 +1,29 @@
 import React, { FunctionComponent } from 'react';
+import { Form } from 'react-bootstrap';
 import Card from 'react-bootstrap/esm/Card';
+import { FaPen, FaTrash } from 'react-icons/fa';
 
 import './AddressCard.css';
 
 interface AddressCardProps {
+    id:string;
     title?: string;
     address_type?: string;
     address?: string;
 }
  
-const AddressCard: FunctionComponent<AddressCardProps> = () => {
+const AddressCard: FunctionComponent<AddressCardProps> = ({id, title, address_type, address}) => {
     return <Card className='address-card'>
-        <Card.Body>
+        <Card.Header>
             <Card.Title className='address--radio-button'>
-                <span>Card Title</span>
-                <input aria-label="Checkbox for following text input" name='address' type="radio" className="form-check-input"/>
+                <Form.Check type='radio' label={title} name='address' inline id={id}/>
             </Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-            <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-            </Card.Text>
+        </Card.Header>
+        <Card.Body>
+            <Card.Subtitle className="mb-2 text-muted">{address_type}</Card.Subtitle>
+            <Card.Text>{address}</Card.Text>
         </Card.Body>
+        <Card.Footer><FaPen size={'14px'}/><FaTrash size={'14px'}/></Card.Footer>
     </Card>;
 }
  

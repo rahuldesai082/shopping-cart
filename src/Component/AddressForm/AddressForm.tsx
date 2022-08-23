@@ -48,6 +48,27 @@ const AddressForm: FunctionComponent<AddressFormProps> = ({show, setShow}) => {
                         <Form.Label>Postcode</Form.Label>
                         <Form.Control type="text" placeholder="Enter postcode" />
                     </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicAddressType">
+                        <Form.Label>Address type</Form.Label>
+                        <Form.Group>
+                            <Form.Check
+                                inline
+                                label="Home"
+                                name="addressType"
+                                type="radio"
+                                id={`addressTypeHome`}
+                                onChange={() => 1}
+                            />
+                            <Form.Check
+                                inline
+                                label="Office"
+                                name="addressType"
+                                type="radio"
+                                id={`addressTypeOffice`}
+                                onChange={() => 0}
+                            />
+                        </Form.Group>
+                    </Form.Group>
                 </div>
                 <Col className="Address--action">
                     <Button variant="danger" type="button" onClick={()=>setShow(false)}>Cancel</Button>

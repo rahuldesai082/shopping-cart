@@ -1,0 +1,89 @@
+.filter-container {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 4px;
+    height: fit-content;
+}
+.filter-container .accordion-item {
+    border: none;
+}
+.filter-container .accordion-button:not(.collapsed) {
+    color: unset;
+    background: unset;
+}
+.filter-container .accordion-button:not(.collapsed)::after {
+    background-image:var(--bs-accordion-btn-icon);
+}
+
+.filter-container .accordion-button:focus {
+    border: none!important;
+    box-shadow: none!important;
+}
+.filter-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.range-label {
+    font-size: 14px
+}
+.range-input {
+    flex: 1;
+}
+.filter-container .input-group div {
+    gap: 4px;
+}
+.filter-list{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    column-gap: 16px;
+    row-gap: 18px;
+    position: relative;
+}
+.filter-list .rating-filter {
+    display: flex;
+    align-items: center;
+}
+.filter-list .rating {
+    gap: 8px;
+    position: unset;
+    font-size: 16px;
+}
+.filter-list .rating svg {
+    cursor: pointer;
+}
+.filter-container .input-group div,
+.sortOrder,
+.filter-container {
+    display: flex;
+}
+.filter-list .input-group{
+    width: unset;
+}
+
+.clear-filter {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: red;
+    text-decoration: underline;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 800px){ 
+    .filter-container .accordion-header button{
+        padding: 8px 0;
+    }
+    .filter-list {
+        grid-template-columns: repeat(1, auto);
+        padding: 0;
+    }
+    .filter-list .range-container .range-value{
+        padding: .375rem;
+    }
+}

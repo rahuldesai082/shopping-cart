@@ -1,4 +1,4 @@
-import { product } from "../Utils/Interface/ContextInterface";
+import { address, product } from "../Utils/Interface/ContextInterface";
 
 export const cartReducer = (state:any, action:{type:string, payload:any}) => {
     switch (action.type) {
@@ -35,8 +35,30 @@ export const cartReducer = (state:any, action:{type:string, payload:any}) => {
         return { ...state, byRating: action.payload };
       case "FILTER_BY_SEARCH":
         return { ...state, searchQuery: action.payload };
+      case "FILTER_BY_PRICE":
+        return { ...state, byPrice: action.payload };
       case "CLEAR_FILTERS":
-        return { byStock: false, byFastDelivery: false, byRating: 0 };
+        return { byStock: false, sort:'', byFastDelivery: false, byRating: 0, byPrice: 0 };
+      default:
+        return state;
+    }
+  };
+  export const AddressReducer = (state:any, action:{type:string, payload:any}) => {
+    switch (action.type) {
+      case "ADD_NEW_ADDRESS":
+        return { ...state, addressList:[...state.addressList, {...action.payload}] };
+      case "EDIT_ADDRESS":
+        return { ...state, addressList:state.addressList.map((a:address)=>a.id===action.payload.id? {...a, ...action.payload} :a) };
+      case "DELETE_ADDRESS":
+        return { ...state, addressList: state.addressList.filter((a:address) => a.id !== action.payload.id), };
+      default:
+        return state;
+    }
+  };
+  export const UiReducer = (state:any, action:{type:string, payload:any}) => {
+    switch(action.type){
+      case "SET_IS_MOBILE":
+        return { ...state, isMobile: action.payload };
       default:
         return state;
     }

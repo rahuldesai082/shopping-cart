@@ -1,7 +1,8 @@
 import React, {  FunctionComponent } from 'react';
 import { Card } from 'react-bootstrap';
+import { TbTruckDelivery} from 'react-icons/tb';
 import { CartState } from '../../Context/Context';
-import { product, reducerParameters } from '../../Utils/Interface/ContextInterface';
+import { product } from '../../Utils/Interface/ContextInterface';
 import Counter from '../Counter/Counter';
 import Rating from '../Rating/Rating';
 import './Product.css';
@@ -11,7 +12,7 @@ interface ProductsProps {
 }
 
 const Product: FunctionComponent<ProductsProps> = ({productData, customClass }) => {
-    const { id, image, name, price, ratings, inStock, quantity} = productData;
+    const { id, image, name, price, ratings, inStock, quantity, fastDelivery} = productData;
     const {dispatch} = CartState();
     const handleUpdateCart = ( value: number) => {
         let action:string;
@@ -25,10 +26,13 @@ const Product: FunctionComponent<ProductsProps> = ({productData, customClass }) 
     return <>
         <Card key={id} className={`${customClass? customClass : ''} product-card`}>
             <Card.Body>
-                <Rating rating={ratings}/>
                 <Card.Img variant="top" src={image} alt={name} />
             </Card.Body>
             <Card.Footer>
+                <div className='rating-delivery'>
+                    <Rating rating={ratings}/>
+                    {fastDelivery && <TbTruckDelivery className='fastDelivery'/> }
+                </div>
                 <Card.Title className='product-name'>
                     <Card.Text ><small>{name}</small></Card.Text>
                 </Card.Title>

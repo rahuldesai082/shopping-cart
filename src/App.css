@@ -46,6 +46,7 @@ body {
 }
 *::-webkit-scrollbar {
   width: 0;               /* width of the entire scrollbar */
+  height: 0;              /* height of the entire scrollbar */
 }
 *::-webkit-scrollbar-track {
   background: transparent;        /* color of the tracking area */
@@ -66,6 +67,9 @@ body {
   }
 }
 @media only screen and (max-width: 600px){
+  .cart-dropdown .dropdown-menu {
+    position: absolute;
+  }
   .navbar-collapse.show {
     display: flex;
     width: 100%;
@@ -83,5 +87,8 @@ body {
   }
   .home-container {
     padding: 0;
+  }
+  .brandLogo svg, .brandLogo {
+    font-size: 24px;
   }
 }
