@@ -80,10 +80,20 @@
         padding: 8px 0;
     }
     .filter-list {
-        grid-template-columns: repeat(1, auto);
         padding: 0;
+        grid-template-columns: repeat(1, auto);
     }
+    
     .filter-list .range-container .range-value{
         padding: .375rem;
+    }
+}
+@media only screen and (max-width: 600px){ 
+    .filter-list {
+        flex-wrap: wrap;
+        display: flex;
+    }
+    .filter-list .range-container {
+        min-width: 100%;
     }
 }
