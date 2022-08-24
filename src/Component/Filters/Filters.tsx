@@ -48,7 +48,7 @@ const Filters: FunctionComponent<FiltersProps> = ({maxPrice}) => {
                     <Form.Check
                         className='filter-checkbox'
                         inline
-                        label="Out of stock"
+                        label="In stock only"
                         name="outOfStock"
                         type="checkbox"
                         id={`outOfStock`}

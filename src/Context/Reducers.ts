@@ -44,13 +44,18 @@ export const cartReducer = (state:any, action:{type:string, payload:any}) => {
     }
   };
   export const AddressReducer = (state:any, action:{type:string, payload:any}) => {
+    console.log({action})
     switch (action.type) {
       case "ADD_NEW_ADDRESS":
         return { ...state, addressList:[...state.addressList, {...action.payload}] };
       case "EDIT_ADDRESS":
         return { ...state, addressList:state.addressList.map((a:address)=>a.id===action.payload.id? {...a, ...action.payload} :a) };
+      case "SELECT_ADDRESS":
+        return { ...state, selectedAddress: state.addressList.find((a:address)=>a.id===action.payload) };
+      case "CLEAR_ADDRESS":
+        return { ...state, selectedAddress: undefined };
       case "DELETE_ADDRESS":
-        return { ...state, addressList: state.addressList.filter((a:address) => a.id !== action.payload.id), };
+        return { ...state, addressList: state.addressList.filter((a:address) => a.id !== action.payload), };
       default:
         return state;
     }

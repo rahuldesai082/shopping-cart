@@ -9,6 +9,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 
 import './BillingDetails.css';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 interface BillingDetailsProps {
     customClass?: string;
 }
@@ -17,37 +18,25 @@ const BillingDetails: FunctionComponent<BillingDetailsProps> = (props) => {
     const { addressState, uiState } = CartState();
     const { customClass } = props;
     const [showAddressForm, setShowAddressForm] = React.useState(false);
-    console.log('is mobile',uiState?.isMobile)
     return <div className={`${customClass ? customClass : ''} billing--card`}>
         <h5 className="billing--title">
             <span>Billing details</span>
             <Button variant='primary' onClick={()=>setShowAddressForm(true)}>New</Button>
         </h5>
+        {
+            !!(uiState?.isMobile && addressState && addressState?.addressList?.length-1 > 0) && <div className='scroll-note text-primary'>
+                <FaArrowLeft/><span>Scroll side ways to see <b className='text-danger'>{addressState.addressList.length-1 || 0}</b> more address</span><FaArrowRight/>
+            </div>
+        }
         <Row className='billing--address_list'>
             {
-                uiState?.isMobile ? (
-                    <Carousel className='billing-address-slider' variant='dark' touch interval={null} nextIcon='' prevIcon=''>
-                    {
-                            addressState && addressState?.addressList?.map(
-                                (address:address, index) =>  <Carousel.Item key={index}>
-                                        <AddressCard
-                                            key={index}
-                                            id={address.id}
-                                            title={address.AddressTitle}
-                                            address_type={address.addressType}
-                                            address={address.address} />
-                                    </Carousel.Item>
-                            )        
-                        }
-                    </Carousel>
-                ) : (
-                    addressState && addressState?.addressList?.map((address:address, index) => <AddressCard
+                addressState && addressState?.addressList?.map((address:address, index) => <AddressCard
                     key={index}
                     id={address.id}
                     title={address.AddressTitle}
                     address_type={address.addressType}
-                    address={address.address} />)
-                )
+                    address={address.address}
+                />)
             }
         </Row>
         <AddressForm show={showAddressForm} setShow={setShowAddressForm} />

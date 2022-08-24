@@ -24,10 +24,18 @@
     gap: 8px;
 }
 @media only screen and (max-width: 600px) {
+    .scroll-note {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 12px;    
+    }
     .billing--address_list {
         flex-wrap: nowrap;
         overflow: auto;
         max-width: 100%;
+        scroll-snap-type: x proximity;
     }
     .billing-address-slider {
         padding: 0;

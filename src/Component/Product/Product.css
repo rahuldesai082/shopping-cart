@@ -28,8 +28,11 @@
     position: absolute;
     top:0;
 }
-.card-price {
+.out-of-stack, .card-price {
     font-size: 14px;
+}
+.out-of-stack {
+    font-weight: 500;
 }
 .fastDelivery {
     font-size: 24px;

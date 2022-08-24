@@ -20,7 +20,6 @@ export interface address {
     state: string,
     postCode: string,
     addressType: string,
-    isSelected?: boolean,
     isDefault?: boolean
 }
 
@@ -45,7 +44,7 @@ export interface CartContextType {
         [key: string]: any
     },
     productDispatch?:(param:reducerParameters)=>void
-    addressState?:{ addressList: address[] }, 
+    addressState?:{ addressList: address[], selectedAddress?: address }, 
     addressDispatch?:(param:reducerParameters)=>void
     uiState?:{ isMobile: boolean }, 
     uiDispatch?:(param:reducerParameters)=>void

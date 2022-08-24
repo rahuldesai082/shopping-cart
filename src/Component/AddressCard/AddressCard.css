@@ -5,13 +5,48 @@
 }
 .address--radio-button {
     display: flex;
-    margin-bottom: 12px;
+    margin: 0;
 }
-
+.address--radio-button .form-check {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    width: 100%;
+}
+.address--radio-button .form-check .form-check-input {
+    margin: 0;
+}
+.address--radio-button .form-check-label {
+    text-align: left;
+    font-size: 16px;
+    height: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.address-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 4px var(--bs-card-spacer-x);
+    width: 100%;
+}
+.address-action-link{
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
 @media only screen and (max-width: 600px) {
     .address-card {
         max-width: 100%;
-        width: 100%
+        width: 100%;
+        scroll-snap-align: center;
     }
     .address--radio-button {
         justify-content: center;

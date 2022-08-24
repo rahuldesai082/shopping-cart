@@ -31,8 +31,8 @@ function App() {
   },[handleResize])
   return (
     <BrowserRouter>
-      <div className="App">
-      <Header/>
+      <div data-testId='App' className="App">
+        <Header/>
         <Routes>
           <Route path={HOME} element={<Home/>}/>
           <Route path={CHECKOUT} element={<Checkout/>}/>

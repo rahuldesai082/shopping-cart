@@ -9,9 +9,9 @@ import { CHECKOUT, HOME } from '../../routes';
 const Header: FunctionComponent = () => {
     const {state, dispatch, productDispatch} = CartState();
     return <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className='header'>
-    <Container>
+    <Container className='header-container'>
       <Navbar.Brand><Link className='brandLogo' to={HOME}><FaShoppingBag fontSize='32'/>ShopAway</Link></Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" /> */}
       <Navbar.Collapse className='show' id="responsive-navbar-nav">
         <Nav className="ml-auto search-container">
             <Form className="d-flex search-form">
@@ -29,7 +29,7 @@ const Header: FunctionComponent = () => {
                 />
             </Form>
         </Nav>
-        <Nav>
+        <Nav className='cart-state'>
             <Dropdown align='end' className='cart-dropdown'>
                 <Dropdown.Toggle variant='success'>
                     <BsFillCartFill fontSize='18'/>
