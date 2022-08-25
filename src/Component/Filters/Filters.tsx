@@ -25,7 +25,7 @@ const Filters: FunctionComponent<FiltersProps> = ({maxPrice}) => {
     return <Col md={12} className='filter-container'>
         <Accordion >
             <Accordion.Item eventKey="0">
-                <Accordion.Header>Filters({FilterCount})</Accordion.Header>
+                <Accordion.Header data-testid='filter-applied'>Filters({FilterCount})</Accordion.Header>
                 <Accordion.Body className='filter-list'>
                     <InputGroup className='range-container'>
                         <InputGroup.Text className='range-label'>$0</InputGroup.Text>
@@ -68,11 +68,12 @@ const Filters: FunctionComponent<FiltersProps> = ({maxPrice}) => {
                         name="fastDelivery"
                         type="checkbox"
                         id={`fastDelivery`}
-                        onChange={() =>
+                        onChange={() =>{
+                            console.log('fast delivery');
                             productDispatch && productDispatch({
                                 type: "FILTER_BY_DELIVERY",
                                 payload: '',
-                            })
+                            })}
                         }
                         checked={productState?.byFastDelivery}
                     />

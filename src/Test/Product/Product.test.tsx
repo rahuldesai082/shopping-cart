@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import Product from '../../Component/Product/Product';
 import { Cart } from '../../Context/Context';
+import { mockFunction } from '../common';
 
 const productData = {
     id: 'product_id',
@@ -12,7 +13,6 @@ const productData = {
     fastDelivery: true,
     ratings: 3
 }
-const dispatch = jest.fn();
 describe('Product',() =>{
     it('renders without crashing',() => {
         render(<Product productData={productData} customClass='product'/>);
@@ -23,12 +23,12 @@ describe('Product',() =>{
         expect(ele).toHaveLength(1);
     });
     it('should be able to add to cart if product in stock',() => {
-        render(<Cart.Provider value={{dispatch}}><Product productData={productData} customClass='product'/></Cart.Provider>);
+        render(<Cart.Provider value={{dispatch: mockFunction}}><Product productData={productData} customClass='product'/></Cart.Provider>);
         const ele = screen.getByText('Add');
         expect(ele).toBeInTheDocument();
     });
     it('should show out of stock if product not in stock',() => {
-        render(<Cart.Provider value={{dispatch:dispatch, uiState:{isMobile:false}}}>
+        render(<Cart.Provider value={{dispatch:mockFunction, uiState:{isMobile:false}}}>
             <Product productData={{...productData, inStock:0}}/>
         </Cart.Provider>);
         const ele = screen.getByText('Out of stock!');

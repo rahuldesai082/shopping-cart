@@ -1,15 +1,19 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import Home from '../../Page/Home/Home';
 
-describe(Home, () => {
+describe('Home', () => {
     it('renders without crashing', () => {
-        render(<Home />);
+        render(<BrowserRouter>
+            <Home/>
+        </BrowserRouter>);
     });
-    it('renders home container', () => {
-        render(<Home />);
-        expect(screen.getByTestId('home-container')).toBeInTheDocument();
+    it('renders products container and cart', () => {
+        render(<BrowserRouter>
+            <Home/>
+        </BrowserRouter>);
         expect(screen.getByTestId('products-container')).toBeInTheDocument();
-        expect(screen.getByTestId('cart-container')).toBeInTheDocument();
+        expect(screen.getByTestId('cart-card')).toBeInTheDocument();
     });
-});
+})

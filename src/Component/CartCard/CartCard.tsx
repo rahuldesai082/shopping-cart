@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { Card, Button, Col } from 'react-bootstrap';
 import { TbFaceId, TbFaceIdError } from 'react-icons/tb';
-import { Link } from 'react-router-dom';
 import { CartState } from '../../Context/Context';
 import { CHECKOUT } from '../../routes';
 import { product } from '../../Utils/Interface/ContextInterface';
 import Counter from '../Counter/Counter';
+import { useNavigate } from "react-router";
 
 import './CartCard.css';
 interface CartCardProps {
@@ -16,6 +16,7 @@ interface CartCardProps {
 const CartCard: FunctionComponent<CartCardProps> = (props) => {
     const { customClass, actionType } = props;
     const {state, dispatch} = CartState();
+    const navigate = useNavigate();
     const getTitle = () => {
         return <div className='w-100' data-testid='cart-container'>
             {
@@ -36,14 +37,14 @@ const CartCard: FunctionComponent<CartCardProps> = (props) => {
         
         dispatch && dispatch({type:action, payload: {...productData, quantity:value}});
     }
-    return <Card className={`${customClass ? customClass : ''} cart-card`}>
+    return <Card className={`${customClass ? customClass : ''} cart-card`} data-testid="cart-card">
         <Card.Header as="h5">{getTitle()}</Card.Header>
         <Card.Body className='cart--body'>
             <div className='w-100 cart--list h-100'>
                 {
                     state?.cart && state.cart.map(
-                        (product:product ,index:number)=><>
-                            <Col className='cart--product' key={index}>
+                        (product:product ,index:number)=><div className='cart-item' key={index}>
+                            <Col className='cart--product'>
                                 <span className='cart--product_image_name'>
                                     <img className='cart--product_image' src ={product.image} alt={product.name} />
                                     <span className='cart--product_name'>{product.name}</span>
@@ -55,7 +56,7 @@ const CartCard: FunctionComponent<CartCardProps> = (props) => {
                                 <b>${product.price * (product?.quantity||1)}</b>
                             </Col>
                             <hr/>
-                        </>
+                        </div>
                     )
                 }
             </div>
@@ -66,8 +67,8 @@ const CartCard: FunctionComponent<CartCardProps> = (props) => {
                         <strong>${getTotal()}</strong>
                     </Col>
                     <hr/>
-                    { actionType === 'checkout' ? <Link to={CHECKOUT}><Button className='w-100' variant="primary">Check out</Button></Link>
-                        : <Link to='#'><Button className='w-100 btn-success' variant="primary">Proceed to Payment</Button></Link>}
+                    { actionType === 'checkout' ? <Button onClick= {() => navigate(CHECKOUT)} className='w-100' variant="primary">Check out</Button>
+                        : <Button className='w-100 btn-success' variant="primary">Proceed to Payment</Button>}
                 </div>
             }
         </Card.Body>
