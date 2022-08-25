@@ -68,12 +68,11 @@ const Filters: FunctionComponent<FiltersProps> = ({maxPrice}) => {
                         name="fastDelivery"
                         type="checkbox"
                         id={`fastDelivery`}
-                        onChange={() =>{
-                            console.log('fast delivery');
+                        onChange={() =>
                             productDispatch && productDispatch({
                                 type: "FILTER_BY_DELIVERY",
                                 payload: '',
-                            })}
+                            })
                         }
                         checked={productState?.byFastDelivery}
                     />
@@ -125,6 +124,7 @@ const Filters: FunctionComponent<FiltersProps> = ({maxPrice}) => {
                     </div>
                     {
                         !!FilterCount && <div
+                            data-testid='clear-filters'
                             className='clear-filter'
                             onClick={() => {
                                 productDispatch && productDispatch({type:"CLEAR_FILTERS", payload:''})

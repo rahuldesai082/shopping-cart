@@ -77,16 +77,19 @@ describe('Filter', () => {
         fireEvent.click(sortOrderAsc);
         expect(mockFunction).toHaveBeenCalledTimes(1);
     });
-    it('should trigger filter dispatch when "sort by descending" is checked', () =>{
+    it('should trigger filter clear dispatch when "clear filters" is clicked', () =>{
         render(<Cart.Provider value={{ productDispatch: mockFunction, productState: {sort:'highToLow', searchQuery:'' , byPrice: 500, byFastDelivery: true, byRating: 3, byStock: false } } }>
             <Filters maxPrice={900} />
         </Cart.Provider>);
 
-        const sortOrderDesc = screen.getByTestId('sort-by-price-desc');
-        expect(sortOrderDesc).toBeInTheDocument();
+        const sortOrderAsc = screen.getByTestId('sort-by-price-asc');
+        fireEvent.click(sortOrderAsc);
+
+        const clearFilter = screen.getByTestId('clear-filters');
+        expect(clearFilter).toBeInTheDocument();
         
-        fireEvent.click(sortOrderDesc);
-        expect(mockFunction).toHaveBeenCalledTimes(1);
+        fireEvent.click(clearFilter);
+        expect(mockFunction).toHaveBeenCalled();
     });
 
 })
