@@ -23,16 +23,19 @@ const Counter: FunctionComponent<CounterProps> = (props) => {
                 {
                     (value && value > 1) ? <FaMinus
                         className='minus'
-                        onClick={() => updateCart && updateCart(value - 1)}/>
+                        onClick={() => updateCart && updateCart(value - 1)}
+                        data-testid="minus"/>
                     : <FiTrash
                         className='remove'
-                        onClick={() => updateCart && updateCart(0)}/>
+                        onClick={() => updateCart && updateCart(0)}
+                        data-testid="delete"/>
                 }
-                <input type="text" readOnly className='Counter-input' value={value} />
+                <input type="text" readOnly className='Counter-input' value={value} data-testid="counterValue" />
                 {
                     ((maxValue && value) && maxValue > value) ? <FaPlus
                         className='add'
-                        onClick={() => updateCart && updateCart((value || 0 ) + 1)}/>
+                        onClick={() => updateCart && updateCart((value || 0 ) + 1)}
+                        data-testid="add"/>
                     : null
                 }
             </Col>

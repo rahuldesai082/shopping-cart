@@ -82,6 +82,7 @@
     .filter-list {
         padding: 0;
         grid-template-columns: repeat(1, auto);
+        margin-top: 12px;
     }
     
     .filter-list .range-container .range-value{

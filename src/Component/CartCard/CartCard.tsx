@@ -17,7 +17,7 @@ const CartCard: FunctionComponent<CartCardProps> = (props) => {
     const { customClass, actionType } = props;
     const {state, dispatch} = CartState();
     const getTitle = () => {
-        return <div className='w-100'>
+        return <div className='w-100' data-testid='cart-container'>
             {
                 state?.cart?.length ? <Card.Text className='cart-title text-success'><span>Yay!! keep shopping</span> <TbFaceId className='emotion'/></Card.Text> :
                 <Card.Text className='w-100 cart-title text-danger'><span>Your cart is empty</span><TbFaceIdError className='emotion'/></Card.Text>

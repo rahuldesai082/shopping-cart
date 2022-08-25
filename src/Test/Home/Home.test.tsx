@@ -6,8 +6,10 @@ describe(Home, () => {
     it('renders without crashing', () => {
         render(<Home />);
     });
-    it('renders the title', () => {
+    it('renders home container', () => {
         render(<Home />);
-        expect(screen.getByTestId('homeContainer')).toBeInTheDocument();
+        expect(screen.getByTestId('home-container')).toBeInTheDocument();
+        expect(screen.getByTestId('products-container')).toBeInTheDocument();
+        expect(screen.getByTestId('cart-container')).toBeInTheDocument();
     });
-})
+});

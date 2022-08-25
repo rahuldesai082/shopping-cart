@@ -63,8 +63,7 @@ const Products: FunctionComponent<ProductsProps> = () => {
       return sortedProducts;
     };
     const productList = transformProducts();
-    console.log(productList?.length);
-    return <div className='products-container'>
+    return <div className='products-container' data-testid='products-container'>
         <Filters maxPrice={getHighestPrice()}/>
         <Col md={12} className='products-list'>
         {

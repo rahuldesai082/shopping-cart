@@ -10,7 +10,7 @@ interface HomeProps {
 }
  
 const Home: FunctionComponent<HomeProps> = () => {
-    return <Container data-testid='homeContainer' className='home-container'>
+    return <Container data-testid='home-container' className='home-container'>
         <Products/>
         <CartCard actionType='checkout' customClass='home-container--cart'/>
     </Container>;

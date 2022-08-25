@@ -39,7 +39,7 @@ const Product: FunctionComponent<ProductsProps> = ({productData, customClass }) 
                 <div className='details'>
                     <span className='card-price'><b>${price}</b> {inStock ? <small>(<b className='text-danger'>{inStock} left</b>)</small> : 'Out of Stock'}</span>
                     {!!(inStock > 0) ? <Counter updateCart={handleUpdateCart} value={quantity} maxValue={inStock} placeHolder='Add' customClass='card-add_to_cart' /> :
-                    <span className='out-of-stack text-danger'>Out of Stock!</span>}
+                    <span className='out-of-stack text-danger'>Out of stock!</span>}
                 </div>
             </Card.Footer>
         </Card>

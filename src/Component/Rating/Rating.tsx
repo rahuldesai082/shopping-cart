@@ -16,11 +16,12 @@ const Rating: FunctionComponent<RatingProps> = ({rating, onClick}) => {
     const ratingHandle = (rating:number) => {
         onClick && onClick(rating);
     }
-    return <div className='rating'>
+    return <div className='rating' data-testid='rating'>
         {
             Array(5).fill(0).map((_, index) => <FaStar
-                color={index < ratingValue ? 'gold' : 'grey'}
-                key={index} className='rating-star'
+                key={index}
+                className={`${!!(index < ratingValue) && 'active'} rating-star`}
+
                 onClick={() => ratingHandle(index+1)}
                 onMouseEnter={(e) => onClick && index >= rating && setRatingValue(index+1)}
                 onMouseLeave={() => onClick && setRatingValue(rating)}

@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker'
 import { cartReducer, productReducer, AddressReducer, UiReducer } from "./Reducers";
 import { CartContextType } from "../Utils/Interface/ContextInterface";
 
-const Cart = createContext<CartContextType>({});
+export const Cart = createContext<CartContextType>({});
 
 export const CartState = () => useContext(Cart);
 

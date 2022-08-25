@@ -1,7 +1,5 @@
 import React, { FunctionComponent, useEffect } from 'react';
-import { Form, FormGroup, InputGroup } from 'react-bootstrap';
-import Accordion from 'react-bootstrap/esm/Accordion';
-import Col from 'react-bootstrap/esm/Col';
+import { Form, FormGroup, InputGroup, Accordion, Col } from 'react-bootstrap';
 import { CartState } from '../../Context/Context';
 import Rating from '../Rating/Rating';
 
@@ -33,6 +31,7 @@ const Filters: FunctionComponent<FiltersProps> = ({maxPrice}) => {
                         <InputGroup.Text className='range-label'>$0</InputGroup.Text>
                         <InputGroup.Text className='range-input'>
                             <Form.Range
+                                data-testid='price-range'
                                 min={0}
                                 max={maxPrice}
                                 value={productState?.byPrice}
@@ -42,7 +41,7 @@ const Filters: FunctionComponent<FiltersProps> = ({maxPrice}) => {
                                 })}
                                 />
                         </InputGroup.Text>
-                        <InputGroup.Text className='range-label'>${maxPrice.toString().split('.')[0]}</InputGroup.Text>
+                        <InputGroup.Text className='range-label' data-testid='max-price'>${maxPrice.toString().split('.')[0]}</InputGroup.Text>
                         <InputGroup.Text className='range-label range-value text-success rang'><b>${productState?.byPrice}</b></InputGroup.Text>
                     </InputGroup>
                     <Form.Check
@@ -52,6 +51,7 @@ const Filters: FunctionComponent<FiltersProps> = ({maxPrice}) => {
                         name="outOfStock"
                         type="checkbox"
                         id={`outOfStock`}
+                        data-testid='out-of-stock'
                         onChange={() =>
                             productDispatch && productDispatch({
                                 type: "FILTER_BY_STOCK",
@@ -61,6 +61,7 @@ const Filters: FunctionComponent<FiltersProps> = ({maxPrice}) => {
                         checked={productState?.byStock}
                     />
                     <Form.Check
+                        data-testid='fast-delivery'
                         inline
                         className='filter-checkbox'
                         label="Fast delivery"
@@ -78,6 +79,7 @@ const Filters: FunctionComponent<FiltersProps> = ({maxPrice}) => {
                     <div className='sortOrder'>
                         <FormGroup>
                             <Form.Check
+                                data-testid='sort-by-price-asc'
                                 inline
                                 label="Ascending"
                                 name="sortOrder"
@@ -92,6 +94,7 @@ const Filters: FunctionComponent<FiltersProps> = ({maxPrice}) => {
                                 checked={productState?.sort === "lowToHigh" ? true : false}
                             />
                             <Form.Check
+                                data-testid='sort-by-price-desc'
                                 inline
                                 label="Descending"
                                 name="sortOrder"
