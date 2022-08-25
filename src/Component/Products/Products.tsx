@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import { CartState } from '../../Context/Context';
 import { product } from '../../Utils/Interface/ContextInterface';
 import Filters from '../Filters/Filters';
@@ -20,9 +20,9 @@ const Products: FunctionComponent<ProductsProps> = () => {
     }
 
     const getHighestPrice =() => {
-        return (state?.products?.reduce((prev, curr) => {
+        return state?.products?.length ? (state?.products?.reduce((prev, curr) => {
             return prev.price > curr.price ? prev : curr;
-        },state?.products[0]).price)||0;
+        },state?.products[0]).price) : 0;
     }
 
     const transformProducts = () => {
@@ -65,7 +65,7 @@ const Products: FunctionComponent<ProductsProps> = () => {
     const productList = transformProducts();
     return <div className='products-container' data-testid='products-container'>
         <Filters maxPrice={getHighestPrice()}/>
-        <Col md={12} className='products-list'>
+        <Col md={12} className='products-list' data-testid="product-list">
         {
             !!productList?.length ? productList?.map(
                 (product:product ,index:number)=><Product

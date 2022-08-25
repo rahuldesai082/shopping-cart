@@ -28,21 +28,23 @@ export interface reducerParameters {
     payload: any,
 }
 
+export interface ProductFilter {
+    sort:'lowToHigh'|'highToLow',
+    byStock:boolean,
+    byFastDelivery:boolean,
+    byRating:number,
+    byPrice:number,
+    searchQuery:string,
+    [key: string]: any
+}
+
 export interface CartContextType {
     state?:{
         cart?: product[],
         products?: product[]
     },
     dispatch?:(param:reducerParameters)=>void,
-    productState?:{
-        sort:'lowToHigh'|'highToLow',
-        byStock:boolean,
-        byFastDelivery:boolean,
-        byRating:number,
-        byPrice:number,
-        searchQuery:string,
-        [key: string]: any
-    },
+    productState?:ProductFilter,
     productDispatch?:(param:reducerParameters)=>void
     addressState?:{ addressList: address[], selectedAddress?: address }, 
     addressDispatch?:(param:reducerParameters)=>void

@@ -22,7 +22,7 @@ const Filters: FunctionComponent<FiltersProps> = ({maxPrice}) => {
         } );
         setFilterCount(count);
     }, [productState]);
-    return <Col md={12} className='filter-container'>
+    return <Col md={12} className='filter-container' data-testid="filters">
         <Accordion >
             <Accordion.Item eventKey="0">
                 <Accordion.Header data-testid='filter-applied'>Filters({FilterCount})</Accordion.Header>
