@@ -25,7 +25,7 @@
     "test": "react-scripts test",
     "test-all": "./node_modules/.bin/cross-env CI=true react-scripts test --bail=true",
     "eject": "react-scripts eject",
-    "coverage": "npm run test -- --coverage --watchAll=true"
+    "coverage": "npm run test -- --coverage --watchAll --no-cache"
   },
   "eslintConfig": {
     "extends": [

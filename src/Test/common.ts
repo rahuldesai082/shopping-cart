@@ -82,11 +82,19 @@ export const productList: product[] = [
     }
 ]
 
-export const filters:ProductFilter = {
-    sort:'highToLow',
-    byStock:true,
-    byFastDelivery:false,
-    byRating:4,
-    byPrice:500,
-    searchQuery:''
+export const filters1:ProductFilter = {
+    sort: 'highToLow',
+    byStock: true,
+    byFastDelivery: false,
+    byRating: 4,
+    byPrice: 500,
+    searchQuery: ''
+}
+export const filters2:ProductFilter = {
+    sort: 'lowToHigh',
+    byStock: true,
+    byFastDelivery: true,
+    byRating: 4,
+    byPrice: 500,
+    searchQuery: 'product'
 }

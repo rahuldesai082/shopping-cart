@@ -17,7 +17,7 @@ const Counter: FunctionComponent<CounterProps> = (props) => {
 
     return <Row className={`${customClass ? customClass : ''} Counter`}>
         {
-            (placeHolder && !value) ? <span className='placeHolder' onClick={() => updateCart && updateCart(1)}>
+            (placeHolder && !value) ? <span className='placeHolder' data-testid="placeholder" onClick={() => updateCart && updateCart(1)}>
                 {placeHolder}
             </span> : <Col className='cart-action'>
                 {
